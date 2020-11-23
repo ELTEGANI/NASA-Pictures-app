@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.nasapicturesapp.R
+import com.example.nasapicturesapp.adapters.PhotoGridAdapter
 import com.example.nasapicturesapp.databinding.ImagesGridFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,9 +25,7 @@ class ImagesGridFragment : Fragment() {
         imagesGridFragmentBinding.lifecycleOwner = this
         imagesGridFragmentBinding.imageGridViewModel = imagesGridViewModel
 
-        imagesGridViewModel.jsonImagesResponse.observe(viewLifecycleOwner, {
-            Toast.makeText(context,it.toString(),Toast.LENGTH_SHORT).show()
-        })
+        imagesGridFragmentBinding.photosGrid.adapter = PhotoGridAdapter()
 
         return imagesGridFragmentBinding.root
     }

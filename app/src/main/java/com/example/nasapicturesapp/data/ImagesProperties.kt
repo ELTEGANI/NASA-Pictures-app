@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class JsonImages(
+data class ImagesProperties(
     val date: String,
     val explanation: String,
     val hdurl: String,

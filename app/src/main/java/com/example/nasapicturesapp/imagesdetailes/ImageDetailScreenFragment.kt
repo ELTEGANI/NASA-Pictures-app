@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ImageDetailScreenFragment : Fragment() {
 
-
     private lateinit var imageDetailScreenFragmentBinding: ImageDetailScreenFragmentBinding
     private val imageDetailScreenViewModel:ImageDetailScreenViewModel by viewModels()
 

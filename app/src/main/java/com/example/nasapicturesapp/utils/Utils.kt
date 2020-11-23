@@ -1,17 +1,17 @@
 package com.example.nasapicturesapp.utils
 
 import android.content.Context
-import com.example.nasapicturesapp.data.JsonImages
+import com.example.nasapicturesapp.data.ImagesProperties
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object JsonUtil {
-    fun getAssetImages(context: Context): List<JsonImages>? {
+    fun getAssetImages(context: Context): List<ImagesProperties>? {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-        val listType = Types.newParameterizedType(List::class.java,JsonImages::class.java)
-        val adapter: JsonAdapter<List<JsonImages>> = moshi.adapter(listType)
+        val listType = Types.newParameterizedType(List::class.java,ImagesProperties::class.java)
+        val adapter: JsonAdapter<List<ImagesProperties>> = moshi.adapter(listType)
         val jsonFile = "data.json"
         val imagesJson = context.assets.open(jsonFile).bufferedReader().use{ it.readText()}
         return adapter.fromJson(imagesJson)
