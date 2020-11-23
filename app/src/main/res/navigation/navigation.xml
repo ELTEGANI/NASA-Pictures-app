@@ -19,5 +19,10 @@
         android:id="@+id/imageDetailScreenFragment"
         android:name="com.example.nasapicturesapp.imagesdetailes.ImageDetailScreenFragment"
         android:label="image_detail_screen_fragment"
-        tools:layout="@layout/image_detail_screen_fragment" />
+        tools:layout="@layout/image_detail_screen_fragment">
+        <argument
+            android:name="selectedProperty"
+            app:argType="com.example.nasapicturesapp.data.ImagesProperties"
+            />
+    </fragment>
 </navigation>
