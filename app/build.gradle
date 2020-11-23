@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -69,4 +70,12 @@ dependencies {
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+
+    //dagger:hilt
+    implementation "com.google.dagger:hilt-android:$daggerHilt"
+    kapt "com.google.dagger:hilt-android-compiler:$daggerHilt"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    // When using Kotlin.
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+
 }
