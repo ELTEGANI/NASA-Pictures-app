@@ -42,6 +42,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -77,5 +84,11 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     // When using Kotlin.
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+
+    //moshi
+    implementation 'com.squareup.moshi:moshi-adapters:1.11.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.11.0'
+
+
 
 }
