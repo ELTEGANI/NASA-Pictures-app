@@ -9,7 +9,7 @@ import com.example.nasapicturesapp.data.ImagesProperties
 import com.example.nasapicturesapp.databinding.GridViewItemBinding
 
 
-class PhotoGridAdapter : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter(val onClickListener: OnClickListener) : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPropertyViewHolder>(DiffCallback) {
 
     class ImagesPropertyViewHolder(private var binding: GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
@@ -24,8 +24,11 @@ class PhotoGridAdapter : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPr
     }
 
     override fun onBindViewHolder(holder: ImagesPropertyViewHolder, position: Int) {
-        val marsProperty = getItem(position)
-        holder.bind(marsProperty)
+        val imagesProperty = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(imagesProperty)
+        }
+        holder.bind(imagesProperty)
     }
 
 
@@ -39,4 +42,8 @@ class PhotoGridAdapter : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPr
         }
     }
 
+    class OnClickListener(val clickListener: (imagesProperties:ImagesProperties) -> Unit) {
+        fun onClick(imagesProperties:ImagesProperties) = clickListener(imagesProperties)
+    }
 }
+

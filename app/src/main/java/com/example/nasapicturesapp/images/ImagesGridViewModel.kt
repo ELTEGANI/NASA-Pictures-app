@@ -18,6 +18,10 @@ class ImagesGridViewModel @ViewModelInject constructor(@ApplicationContext var c
     val jsonImagesProperties: LiveData<List<ImagesProperties>>
         get() = _jsonImages
 
+    private val _navigateToSelectedProperty = MutableLiveData<ImagesProperties>()
+    val navigateToSelectedProperty: LiveData<ImagesProperties>
+        get() = _navigateToSelectedProperty
+
    init {
        readAllImagesFromJsonFile()
    }
@@ -26,6 +30,14 @@ class ImagesGridViewModel @ViewModelInject constructor(@ApplicationContext var c
         viewModelScope.launch {
             _jsonImages.value = getAssetImages(context)
         }
+    }
+
+    fun displayPropertyDetails(imagesProperties: ImagesProperties) {
+        _navigateToSelectedProperty.value = imagesProperties
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
     }
 
 
