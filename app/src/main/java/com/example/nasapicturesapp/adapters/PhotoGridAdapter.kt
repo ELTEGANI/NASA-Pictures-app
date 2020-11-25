@@ -9,7 +9,7 @@ import com.example.nasapicturesapp.data.ImagesProperties
 import com.example.nasapicturesapp.databinding.GridViewItemBinding
 
 
-class PhotoGridAdapter(val onClickListener: OnClickListener) : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPropertyViewHolder>(DiffCallback) {
 
     class ImagesPropertyViewHolder(private var binding: GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
