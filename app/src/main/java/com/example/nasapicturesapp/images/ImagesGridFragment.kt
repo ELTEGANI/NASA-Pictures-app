@@ -33,7 +33,7 @@ class ImagesGridFragment : Fragment() {
 
         imagesGridViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, {
             if ( null != it ) {
-                this.findNavController().navigate(ImagesGridFragmentDirections.actionImagesGridFragmentToImageDetailScreenFragment())
+                this.findNavController().navigate(ImagesGridFragmentDirections.actionImagesGridFragmentToImageDetailScreenFragment(it))
                 imagesGridViewModel.displayPropertyDetailsComplete()
             }
         })
