@@ -19,6 +19,7 @@ buildscript {
         version_lifecycle_extensions = '2.2.0'
         hiltAndroidXVersion = '1.0.0-alpha01'
         daggerHilt = '2.29.1-alpha'
+        navigationlifecycle = '2.2.0'
     }
     repositories {
         google()
@@ -36,6 +37,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
