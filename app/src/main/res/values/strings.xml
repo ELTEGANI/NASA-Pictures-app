@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">NASA Pictures app</string>
+    <string name="app_name">NASA Pictures</string>
     <string name="grid_image_item">grid_image_item</string>
 </resources>

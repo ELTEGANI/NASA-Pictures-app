@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapicturesapp.data.ImagesProperties
 import com.example.nasapicturesapp.databinding.GridViewItemBinding
+import kotlinx.android.synthetic.main.grid_view_item.view.*
 
 
 class PhotoGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<ImagesProperties, PhotoGridAdapter.ImagesPropertyViewHolder>(DiffCallback) {
@@ -25,7 +26,7 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener) : ListAdapt
 
     override fun onBindViewHolder(holder: ImagesPropertyViewHolder, position: Int) {
         val imagesProperty = getItem(position)
-        holder.itemView.setOnClickListener {
+        holder.itemView.cardView.setOnClickListener {
             onClickListener.onClick(imagesProperty)
         }
         holder.bind(imagesProperty)

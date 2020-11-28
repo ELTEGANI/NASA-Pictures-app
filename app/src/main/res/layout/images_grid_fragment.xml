@@ -20,7 +20,7 @@
             android:id="@+id/photos_grid"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="6dp"
+            android:padding="5dp"
             android:clipToPadding="false"
             android:transitionName="shared_element_container"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
