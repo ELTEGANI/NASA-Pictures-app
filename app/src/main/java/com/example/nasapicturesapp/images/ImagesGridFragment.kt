@@ -15,6 +15,7 @@ import com.example.nasapicturesapp.databinding.ImagesGridFragmentBinding
 import com.example.nasapicturesapp.imagesdetailes.ImageDetailScreenFragmentArgs
 import com.google.android.material.transition.Hold
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.images_grid_fragment.*
 
 @AndroidEntryPoint
 class ImagesGridFragment : Fragment() {
@@ -36,7 +37,7 @@ class ImagesGridFragment : Fragment() {
 
         imagesGridViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner,{
         if ( null != it ) {
-          val extras = FragmentNavigatorExtras((view to "shared_element_container") as Pair<View, String>)
+          val extras = FragmentNavigatorExtras((photos_grid to "shared_element_container") as Pair<View, String>)
           this.findNavController().navigate(ImagesGridFragmentDirections.actionImagesGridFragmentToImageDetailScreenFragment(it),extras)
            imagesGridViewModel.displayPropertyDetailsComplete()
          }

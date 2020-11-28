@@ -42,7 +42,6 @@ class ImageDetailScreenFragment : Fragment() {
             ImageDetailScreenFragmentArgs.fromBundle(it).selectedProperties
         }
 
-
         val properties = imageDetailScreenViewModel.extractImageProperties(imageProperties)
 
         lifecycle.coroutineScope.launch {
