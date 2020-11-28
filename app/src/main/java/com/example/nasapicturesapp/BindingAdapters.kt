@@ -14,7 +14,7 @@ import com.example.nasapicturesapp.data.ImagesProperties
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<ImagesProperties>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
-    adapter.submitList(data)
+    adapter.submitList(data?.asReversed())
 }
 
 
