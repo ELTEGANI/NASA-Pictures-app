@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 class ImagesGridViewModel @ViewModelInject constructor(var imagesRepository: ImagesRepository): ViewModel() {
 
-    //TODO lates images
     private val _jsonImages = MutableLiveData<List<ImagesProperties>>()
     val jsonImagesProperties: LiveData<List<ImagesProperties>>
         get() = _jsonImages
