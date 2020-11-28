@@ -1,6 +1,5 @@
 package com.example.nasapicturesapp.imagesdetailes
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,8 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView
 import com.daimajia.slider.library.SliderTypes.TextSliderView
 import com.example.nasapicturesapp.R
 import com.example.nasapicturesapp.databinding.ImageDetailScreenFragmentBinding
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 
 
@@ -26,11 +25,7 @@ class ImageDetailScreenFragment : Fragment() {
     private lateinit var imageDetailScreenFragmentBinding: ImageDetailScreenFragmentBinding
     private val imageDetailScreenViewModel:ImageDetailScreenViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
         imageDetailScreenFragmentBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.image_detail_screen_fragment,
@@ -41,12 +36,15 @@ class ImageDetailScreenFragment : Fragment() {
         imageDetailScreenFragmentBinding.lifecycleOwner = this
         imageDetailScreenFragmentBinding.imageDetailesScreen = imageDetailScreenViewModel
 
+        sharedElementEnterTransition = MaterialContainerTransform()
+
         val imageProperties = arguments?.let {
             ImageDetailScreenFragmentArgs.fromBundle(it).selectedProperties
         }
 
 
         val properties = imageDetailScreenViewModel.extractImageProperties(imageProperties)
+
         lifecycle.coroutineScope.launch {
             val textSliderView = TextSliderView(context)
             for (name in properties.keys) {
