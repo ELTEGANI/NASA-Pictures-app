@@ -1,7 +1,7 @@
 package com.example.nasapicturesapp.imagesdetailes
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +16,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView
 import com.example.nasapicturesapp.R
 import com.example.nasapicturesapp.databinding.ImageDetailScreenFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 
 
@@ -44,25 +45,20 @@ class ImageDetailScreenFragment : Fragment() {
             ImageDetailScreenFragmentArgs.fromBundle(it).selectedProperties
         }
 
+
+        val properties = imageDetailScreenViewModel.extractImageProperties(imageProperties)
         lifecycle.coroutineScope.launch {
-            val images = HashMap<String, String>()
-            images[imageProperties?.title.toString() + '\n' + imageProperties?.date.toString()
-            + '\n' + imageProperties?.explanation.toString()] = imageProperties?.url.toString()
-            images[""] = imageProperties?.hdurl.toString()
-            Log.d("images",images.toString())
-            for (name in images.keys) {
-                val textSliderView = TextSliderView(context)
+            val textSliderView = TextSliderView(context)
+            for (name in properties.keys) {
                 textSliderView.description(name)
-                textSliderView.image(images[name]).scaleType = BaseSliderView.ScaleType.Fit
-                imageDetailScreenFragmentBinding.slider.addSlider(textSliderView)
+                textSliderView.image(properties[name]).scaleType = BaseSliderView.ScaleType.Fit
             }
+            imageDetailScreenFragmentBinding.slider.addSlider(textSliderView)
             imageDetailScreenFragmentBinding.slider.setPresetTransformer(SliderLayout.Transformer.Accordion)
             imageDetailScreenFragmentBinding.slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom)
             imageDetailScreenFragmentBinding.slider.setCustomAnimation(DescriptionAnimation())
         }
-
         return imageDetailScreenFragmentBinding.root
-
     }
 
 }
