@@ -2,6 +2,7 @@ package com.example.nasapicturesapp.repository
 
 import android.content.Context
 import com.example.nasapicturesapp.data.ImagesProperties
+import com.example.nasapicturesapp.data.LocalStorage
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -22,4 +23,5 @@ class ImagesRepository @Inject constructor(@ApplicationContext var context: Cont
             val imagesJson = context.assets.open(jsonFile).bufferedReader().use{ it.readText()}
             return adapter.fromJson(imagesJson)
     }
+
 }

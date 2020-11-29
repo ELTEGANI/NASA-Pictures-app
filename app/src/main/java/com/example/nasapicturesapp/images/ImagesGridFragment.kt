@@ -1,12 +1,12 @@
 package com.example.nasapicturesapp.images
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.nasapicturesapp.R
@@ -18,6 +18,8 @@ import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.grid_view_item.*
 import kotlinx.android.synthetic.main.images_grid_fragment.*
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ImagesGridFragment : Fragment() {
@@ -45,7 +47,40 @@ class ImagesGridFragment : Fragment() {
            imagesGridViewModel.displayPropertyDetailsComplete()
          }
         })
-
+        setHasOptionsMenu(true)
         return imagesGridFragmentBinding.root
+    }
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.action_night_mode -> {
+                    item.isChecked = !item.isChecked
+                    setUIMode(item, item.isChecked)
+                    true
+                }
+                else -> false
+            }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        // Set the item state
+        lifecycleScope.launch {
+            val isChecked = imagesGridViewModel.readDataStore.first()
+            val item = menu.findItem(R.id.action_night_mode)
+            item.isChecked = isChecked
+            setUIMode(item, isChecked)
+        }
+    }
+    private fun setUIMode(item: MenuItem, isChecked: Boolean) {
+        if (isChecked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            imagesGridViewModel.saveToDataStore(true)
+            item.setIcon(R.drawable.ic_night)
+
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            imagesGridViewModel.saveToDataStore(false)
+            item.setIcon(R.drawable.ic_day)
+
+        }
     }
 }

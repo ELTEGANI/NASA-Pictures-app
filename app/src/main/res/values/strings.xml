@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NASA Pictures</string>
     <string name="grid_image_item">grid_image_item</string>
+    <string name="dark_mode">dark mode</string>
 </resources>

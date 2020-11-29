@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="grid_image_item">grid_image_item</string>
+    <string name="dark_mode">dark mode</string>
 </resources>
