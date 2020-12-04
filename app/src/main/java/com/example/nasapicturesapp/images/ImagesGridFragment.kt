@@ -20,12 +20,16 @@ import kotlinx.android.synthetic.main.grid_view_item.*
 import kotlinx.android.synthetic.main.images_grid_fragment.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImagesGridFragment : Fragment() {
 
     private lateinit var imagesGridFragmentBinding: ImagesGridFragmentBinding
     private val imagesGridViewModel: ImagesGridViewModel by viewModels()
+
+    @Inject
+    lateinit var photoGridAdapter: PhotoGridAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         imagesGridFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.images_grid_fragment, container, false)
@@ -36,8 +40,20 @@ class ImagesGridFragment : Fragment() {
         exitTransition = MaterialElevationScale(/* growing= */ false)
         reenterTransition = MaterialElevationScale(/* growing= */ true)
 
-        imagesGridFragmentBinding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener{
+        photoGridAdapter.setOnClickListener(PhotoGridAdapter.OnClickListener{
             imagesGridViewModel.displayPropertyDetails(it)
+        })
+
+        imagesGridFragmentBinding.photosGrid.adapter = photoGridAdapter
+
+        imagesGridViewModel.jsonImagesProperties.observe(viewLifecycleOwner,{
+            it?.let {
+                if (it.isNotEmpty()) {
+                    photoGridAdapter.submitList(it.reversed())
+                } else {
+                    imagesGridFragmentBinding.noImagesTextView.visibility = View.VISIBLE
+                }
+            }
         })
 
         imagesGridViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner,{
