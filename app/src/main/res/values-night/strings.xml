@@ -2,4 +2,5 @@
 <resources>
     <string name="grid_image_item">grid_image_item</string>
     <string name="dark_mode">dark mode</string>
+    <string name="no_images_available">Empty File No Images :(</string>
 </resources>
