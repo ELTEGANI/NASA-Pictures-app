@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-class LocalStorage @Inject constructor(@ApplicationContext context: Context) {
+class LocalStorage @Inject constructor(@ApplicationContext var context: Context) {
 
     companion object {
         private val UI_MODE_KEY = preferencesKey<Boolean>("ui_mode")
