@@ -12,7 +12,8 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 
-class ImagesGridViewModel @ViewModelInject constructor(var imagesRepository: ImagesRepository,var localStorage: LocalStorage): ViewModel() {
+class ImagesGridViewModel @ViewModelInject constructor(var imagesRepository: ImagesRepository,
+                                                       var localStorage: LocalStorage): ViewModel() {
 
     private val _jsonImages = MutableLiveData<List<ImagesProperties>>()
     val jsonImagesProperties: LiveData<List<ImagesProperties>>

@@ -23,5 +23,4 @@ class ImagesRepository @Inject constructor(@ApplicationContext var context: Cont
             val imagesJson = context.assets.open(jsonFile).bufferedReader().use{ it.readText()}
             return adapter.fromJson(imagesJson)
     }
-
 }
