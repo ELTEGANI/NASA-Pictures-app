@@ -49,7 +49,7 @@ class ImagesGridFragment : Fragment() {
         imagesGridViewModel.jsonImagesProperties.observe(viewLifecycleOwner,{
             it?.let {
                 if (it.isNotEmpty()) {
-                    photoGridAdapter.submitList(it.reversed())
+                    photoGridAdapter.submitList(it.asReversed())
                 } else {
                     imagesGridFragmentBinding.noImagesTextView.visibility = View.VISIBLE
                 }
