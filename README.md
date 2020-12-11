@@ -2,7 +2,6 @@
 
 This Android App Display Images in Grid from json file.
 
-
 ### Tech Stack & documentation
 
 - MVVM Architecture [DOCS](https://developer.android.com/jetpack/guide)
