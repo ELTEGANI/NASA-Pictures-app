@@ -2,7 +2,7 @@
 
 This Android App Display Images in Grid from json file.
 
-<img align="center" src="" 
+<img align="center" src="https://github.com/ELTEGANI/NASA-Pictures-app/blob/main/app/gif/nasa.gif" 
 alt="A demo illustraating the UI of the app" width="288" height="512" style="display: inline; float: center"/>
 
 ### Tech Stack & documentation
